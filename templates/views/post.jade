@@ -26,5 +26,4 @@ block content
 						if data.post.author
 							| by #{data.post.author.name.first}
 				.posting
-					- console.log(data.post.content)
 					p !{data.post.content.extended.html}

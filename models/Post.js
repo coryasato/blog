@@ -19,7 +19,7 @@ Post.add({
 	image: { type: Types.CloudinaryImage },
 	content: {
 		brief: { type: Types.Html, wysiwyg: true, height: 150 },
-		extended: { type: Types.Markdown }
+		extended: { type: Types.Markdown, height: 300 }
 	},
 	musicURL: { type: String },
 	musicImage: { type:Types.CloudinaryImage },

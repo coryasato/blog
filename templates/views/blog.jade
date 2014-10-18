@@ -1,8 +1,7 @@
 extends ../layouts/default
 
 mixin post(post)
-	.col-xs-6.col-md-6
-		.post.post-container(data-ks-editable=editable(user, { list: 'Post', id: post.id }))
+		.post(data-ks-editable=editable(user, { list: 'Post', id: post.id }))
 			.row
 				.col-xs-12
 					.post-header
@@ -10,27 +9,31 @@ mixin post(post)
 							.post-img(style='background: url(' + post._.musicImage.src() + ') no-repeat; background-size: cover; background-position: center;')
 								if post.musicURL
 									a(target='_blank' href=post.musicURL)
-										p.fa.fa-volume-up.fa-2x.listening-to.pull-right
+										p.fa.fa-volume-up.fa-2x.listening-to.pull-right(data-toggle='tooltip' data-placement='top' title=post.musicArtist)
 						else
 							.post-img(style='background: url(../images/beige-plaid.jpg) no-repeat; background-size: cover; background-position: center;')
 								if post.musicURL
 									a.music-icon(target='_blank' href=post.musicURL)
-										p.fa.fa-volume-up.fa-2x.listening-to.pull-right
+										p.fa.fa-volume-up.fa-2x.listening-to.pull-right(data-toggle='tooltip' data-placement='top' title=post.musicArtist)
 			.row
 				.col-xs-12
 					h2.post-title: a(href='/blog/post/' + post.slug)= post.title
 			.row
 				.col-xs-12
 					.brief-content!= post.content.brief
-					if post.content.extended
-						p.read-more: a.pull-right(href='/blog/post/' + post.slug) Read more...
-		.post-footer
-			p.lead.text-muted.posted-on.pull-right Posted 
-				if post.publishedDate
-					| on #{post._.publishedDate.format('MMMM Do, YYYY')}
+			.row
+				.col-xs-12
+					.post-footer
+						if post.content.extended
+							p.read-more: a.pull-left(href='/blog/post/' + post.slug) Read more...
+						if post.publishedDate
+							.post-date.pull-right.text-center
+								| #{post._.publishedDate.format('MMM Do')}
+								br
+								| #{post._.publishedDate.format('YYYY')}
 
-block intro
-	.container.intro-container
+block header
+	.intro-container: .container
 		.row
 			.col-xs-12
 				h1.text-center.title Fuzz &amp; Caffeine
@@ -55,7 +58,7 @@ block content
 							|  of 
 							strong #{data.posts.total}
 							|  posts.
-					.blog
+					.blog.post-row
 						each post in data.posts.results
 							+post(post)
 					
@@ -80,11 +83,25 @@ block content
 		
 		if data.categories.length
 			.col-xs-12.col-sm-2.col-md-2
-				h2
-				.list-group.text-center(style='margin-top: 50px;')
+				.list-group.text-center
 					a(href='/blog', class=!data.category ? 'active' : false).list-group-item All Categories
 					each cat in data.categories
 						a(href='/blog/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
 
+	.about-me
+		.row
+			.col-xs-12.text-center
+				h1.bold Aspiring Fullstack Javascript Developer
+				h3 Hacking 'til the guilt birds sing.
+				br 
+				br 
+				a(href='https://twitter.com/CoryAsato', target='_blank')
+					span.fa.fa-twitter.fa-3x.socials
+				a(href='https://github.com/coryasato', target='_blank')
+					span.fa.fa-github.fa-3x.socials
+				a(href='#', target='_blank')
+					span.fa.fa-linkedin.fa-3x.socials
+
 
 block js
+	script $('.listening-to').tooltip();

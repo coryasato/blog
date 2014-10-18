@@ -22,6 +22,7 @@ Post.add({
 		extended: { type: Types.Markdown, height: 300 }
 	},
 	musicURL: { type: String },
+	musicArtist: { type: String },
 	musicImage: { type:Types.CloudinaryImage },
 	categories: { type: Types.Relationship, ref: 'PostCategory', many: true }
 });

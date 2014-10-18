@@ -1,9 +1,14 @@
 extends ../layouts/default
 
+block intro
+	if data.post.image.exists
+		.container: .row: .col-xs-12: .image-wrap: img(src=data.post._.image.fill(1000,450)).img-responsive.center-block
+
+
 block content
 	.container: .row: .col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2
-		if data.post.image.exists
-			.image-wrap: img(src=data.post._.image.fit(750,450)).img-responsive.center-block
+		//- if data.post.image.exists
+		//- 	.image-wrap: img(src=data.post._.image.fit(750,450)).img-responsive.center-block
 		article
 			p: a(href='/blog') &larr; back to the blog
 			hr
@@ -27,3 +32,17 @@ block content
 							| by #{data.post.author.name.first}
 				.posting
 					p !{data.post.content.extended.html}
+
+	.about-me
+		.row
+			.col-xs-12.text-center
+				h1.bold Aspiring Fullstack Javascript Developer
+				h3 Hacking 'til the guilt birds sing.
+				br 
+				br 
+				a(href='https://twitter.com/CoryAsato', target='_blank')
+					span.fa.fa-twitter.fa-3x.socials
+				a(href='https://github.com/coryasato', target='_blank')
+					span.fa.fa-github.fa-3x.socials
+				a(href='#', target='_blank')
+					span.fa.fa-linkedin.fa-3x.socials

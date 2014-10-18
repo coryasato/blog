@@ -8,13 +8,13 @@ mixin post(post)
 						if post.musicImage.exists
 							.post-img(style='background: url(' + post._.musicImage.src() + ') no-repeat; background-size: cover; background-position: center;')
 								if post.musicURL
-									a.music-icon(target='_blank' href=post.musicURL)
-										p.fa.fa-volume-up.fa-2x.listening-to.pull-right(data-toggle='tooltip' data-placement='top' title=post.musicArtist)
+									a.music-icon.pull-right(target='_blank' href=post.musicURL, data-toggle='tooltip', data-placement='left', title=post.musicArtist)
+										p.fa.fa-volume-up.fa-2x.listening-to
 						else
 							.post-img(style='background: url(../images/beige-plaid.jpg) no-repeat; background-size: cover; background-position: center;')
 								if post.musicURL
-									a.music-icon(target='_blank' href=post.musicURL)
-										p.fa.fa-volume-up.fa-2x.listening-to.pull-right(data-toggle='tooltip' data-placement='top' title=post.musicArtist)
+									a.music-icon(target='_blank' href=post.musicURL, data-toggle='tooltip', data-placement='left', title=post.musicArtist)
+										p.fa.fa-volume-up.fa-2x.listening-to.pull-right
 			.row
 				.col-xs-12
 					h2.post-title: a(href='/blog/post/' + post.slug)= post.title
@@ -104,4 +104,4 @@ block content
 
 
 block js
-	script $('.listening-to').tooltip({trigger:'hover'});
+	script $('.music-icon').tooltip({trigger: 'hover'});

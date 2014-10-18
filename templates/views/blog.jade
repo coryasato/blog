@@ -8,7 +8,7 @@ mixin post(post)
 						if post.musicImage.exists
 							.post-img(style='background: url(' + post._.musicImage.src() + ') no-repeat; background-size: cover; background-position: center;')
 								if post.musicURL
-									a(target='_blank' href=post.musicURL)
+									a.music-icon(target='_blank' href=post.musicURL)
 										p.fa.fa-volume-up.fa-2x.listening-to.pull-right(data-toggle='tooltip' data-placement='top' title=post.musicArtist)
 						else
 							.post-img(style='background: url(../images/beige-plaid.jpg) no-repeat; background-size: cover; background-position: center;')
@@ -104,4 +104,4 @@ block content
 
 
 block js
-	script $('.listening-to').tooltip();
+	script $('.listening-to').tooltip({trigger:'hover'});

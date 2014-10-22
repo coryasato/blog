@@ -1,6 +1,7 @@
 {
   "name": "blog",
   "script": "keystone.js",
+  "args": "['-i', 'loglevel']",
   "watch": "true",
   "env": {
     "NODE_ENV": "production"

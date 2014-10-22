@@ -2,7 +2,7 @@ extends ../layouts/default
 
 block intro
 	if data.post.image.exists
-		.container: .row: .col-xs-12: .image-wrap: img(src=data.post._.image.scale(1000,450)).img-responsive.center-block
+		.container: .row: .col-xs-12: .image-wrap: img(src=data.post._.image.crop(1000,450)).img-responsive.center-block
 
 
 block content

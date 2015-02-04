@@ -28,3 +28,4 @@ gulp.task('watchLint', function () {
 		.pipe(jshint())
 		.pipe(jshint.reporter(jshintReporter));
 });
+
